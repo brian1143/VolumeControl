@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Volume Control</string>
+    <string name="tile_service_name">Sound Volume</string>
+</resources>
