@@ -3,12 +3,21 @@ package app.phhuang.volumecontrol
 import android.content.Context
 import android.content.Intent
 import android.media.AudioManager
-import android.os.Handler
 import android.service.quicksettings.Tile
 import android.service.quicksettings.TileService
 import android.util.Log
 
 class VolumeTileService : TileService() {
+    private fun getLabel() : String {
+        val audioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
+        val currentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC)
+        return resources.getString(R.string.volume_control_label, currentVolume, audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC))
+    }
+
+    private fun isMute() : Boolean {
+        val audioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
+        return audioManager.isStreamMute(AudioManager.STREAM_MUSIC)
+    }
 
     override fun onTileAdded() {
         Log.i("debug", "on tile added")
@@ -20,13 +29,13 @@ class VolumeTileService : TileService() {
 
     override fun onStartListening() {
         Log.i("debug", "on tile start listening")
-        val audioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
-        val label = "Volume: ${audioManager.getStreamVolume(AudioManager.STREAM_MUSIC)}/${audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC)}"
 
         val tile = qsTile
-        tile.state = Tile.STATE_INACTIVE
-        tile.label = label
-        tile.updateTile()
+        tile?.let {
+            it.state = if (isMute()) Tile.STATE_INACTIVE else Tile.STATE_ACTIVE
+            it.label = getLabel()
+            it.updateTile()
+        }
     }
 
     override fun onStopListening() {

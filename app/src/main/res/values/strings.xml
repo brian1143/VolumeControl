@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Volume Control</string>
-    <string name="tile_service_name">Sound Volume</string>
+    <string name="tile_service_name">Volume button</string>
+    <string name="volume_control_label">Volume: %1$d/%2$d</string>
 </resources>

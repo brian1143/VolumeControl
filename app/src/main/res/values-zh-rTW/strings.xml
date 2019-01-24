@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">音量控制</string>
+    <string name="tile_service_name">音量調整鈕</string>
+    <string name="volume_control_label">音量: %1$d/%2$d</string>
+</resources>
