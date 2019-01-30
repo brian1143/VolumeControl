@@ -16,7 +16,7 @@ class VolumeTileService : TileService() {
 
     private fun isMute() : Boolean {
         val audioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
-        return audioManager.isStreamMute(AudioManager.STREAM_MUSIC)
+        return audioManager.isStreamMute(AudioManager.STREAM_MUSIC) || audioManager.getStreamVolume(AudioManager.STREAM_MUSIC) == 0
     }
 
     override fun onTileAdded() {
