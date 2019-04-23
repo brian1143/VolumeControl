@@ -7,8 +7,28 @@
         android:theme="@style/AppTheme">
         <service
             android:name=".VolumeTileService"
-            android:icon="@drawable/ic_volume"
+            android:icon="@drawable/ic_volume_up_black_24dp"
             android:label="@string/tile_service_name"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action
+                    android:name="android.service.quicksettings.action.QS_TILE"/>
+            </intent-filter>
+        </service>
+        <service
+            android:name=".VolumeUpTileService"
+            android:icon="@drawable/ic_add_circle_black_24dp"
+            android:label="@string/up_tile_service_name"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action
+                    android:name="android.service.quicksettings.action.QS_TILE"/>
+            </intent-filter>
+        </service>
+        <service
+            android:name=".VolumeDownTileService"
+            android:icon="@drawable/ic_remove_circle_black_24dp"
+            android:label="@string/down_tile_service_name"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
                 <action
