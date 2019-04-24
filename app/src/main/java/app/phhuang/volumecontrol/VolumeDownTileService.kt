@@ -15,7 +15,7 @@ class VolumeDownTileService : TileService(), VolumeControlTileService {
         val tile = qsTile
         tile?.let {
             it.state = if (Utils.isMute(this)) Tile.STATE_INACTIVE else Tile.STATE_ACTIVE
-            it.label = Utils.getVolumeLabel(this)
+            it.label = Utils.getVolumeLabel(this) + "(-1)"
             it.updateTile()
         }
     }
