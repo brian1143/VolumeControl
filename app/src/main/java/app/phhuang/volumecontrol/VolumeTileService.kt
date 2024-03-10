@@ -51,7 +51,11 @@ class VolumeTileService : TileService(), VolumeControlTileService {
     override fun onClick() {
         Log.i("debug", "on click")
 
-        sendBroadcast(Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS))
+        try {
+            sendBroadcast(Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS))
+        } catch (_: Exception) {
+
+        }
 
         Handler().postDelayed({
             val audioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
